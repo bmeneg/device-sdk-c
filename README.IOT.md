@@ -39,3 +39,19 @@ apk add iotech-iot-1.5-dev
 ```
 
 Note: If not using Alpine 3.16, replace v3.16 in the above commands with the correct version.
+
+### Fedora
+
+For some reason Fedora packages are not signed, so we need to skip `gpgcheck`.
+```
+cat << 'EOF' > /etc/yum.repos.d/iotech.repo
+[iotech]
+name=iotech
+baseurl=https://iotech.jfrog.io/artifactory/rpm-fedora-40-release/
+enabled=1
+gpgcheck=0
+gpgkey=https://iotech.jfrog.io/artifactory/api/security/keypair/default-gpg-key/public
+EOF
+
+dnf install iotech-iot-1.5-dev
+```
